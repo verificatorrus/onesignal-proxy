@@ -1,0 +1,11 @@
+name = "onesignal-proxy"
+type = "javascript"
+# Cloudflare account ID. Read README.md for details
+account_id = "000aaa000aaa000aaa000aaa000aaa00"
+# The zone ID of the domain to deploying to. Read README.md for details
+zone_id = "000000000000aaaaaaaaaaaaaaaaaaaa"
+workers_dev = true
+# The route to deploying to. Read README.md for details
+route = "https://onesignal.example.com/*"
+vars = { MYDOMAIN = "https://onesignal.example.com"}
+
