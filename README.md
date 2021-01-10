@@ -45,7 +45,7 @@ Example configuration for domain **https://yourdomain.com** and proxy setup **ht
 importScripts('https://onesignal.yourdomain.com/sdks/OneSignalSDK.js')
 ```
 
-#### https://yoursite.com/OneSignalSDKUpdaterWorker.js
+#### Edit https://yoursite.com/OneSignalSDKUpdaterWorker.js
 
 ```javascript
 importScripts('https://onesignal.yourdomain.com/sdks/OneSignalSDK.js')
@@ -68,6 +68,10 @@ IP v4 address:
 
 or any other valid IP address
 
+<img src="https://raw.githubusercontent.com/verificatorrus/onesignal-proxy/master/dash-add-subdomain.png"  width="320">
+
+
+
 ### Publish via Cloudflare dashboard
 
 #### Create worker in dashboard
@@ -86,6 +90,8 @@ onesignal-proxy
 ```
 const MYSUBDOMAIN = 'https://onesignal.yourdomain.com'
 ```
+<img src="https://raw.githubusercontent.com/verificatorrus/onesignal-proxy/master/create-worker-dashboard.png"  width="320">
+
 
 #### Configure worker in dashboard
 
@@ -99,25 +105,28 @@ https://onesignal.yourdomain.com/*
 ✅ Worker: select **onesignal-proxy** from dropdown menu  
 ✅ Save
 
+<img src="https://raw.githubusercontent.com/verificatorrus/onesignal-proxy/master/add-route.png"  width="320">
+
+
 🎉 DONE!
 
 https://dash.cloudflare.com/?account=workers
 
 ### Publish via Cloudflare Wrangler
 
-####Install [wrangler](https://github.com/cloudflare/wrangler)
+#### Install [wrangler](https://github.com/cloudflare/wrangler)
 
 ```
 npm i @cloudflare/wrangler -g
 ```
 
-####Configure wrangler
+#### Configure wrangler
 
 ```
 wrangler config
 ```
 
-####Setup wrangler configuration file
+#### Setup wrangler configuration file
 
 Edit file [`wrangler.toml`](https://github.com/verificatorrus/onesignal-proxy/blob/master/wrangler.toml)
 
@@ -130,7 +139,7 @@ route = "https://onesignal.example.com/*"
 vars = { MYDOMAIN = "https://onesignal.example.com"}
 ```
 
-####Publish to cloudflare
+#### Publish to cloudflare
 
 ```
 wrangler publish
