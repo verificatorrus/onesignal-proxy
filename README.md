@@ -12,7 +12,29 @@ This worker proxy requests from WEB users to OneSignal Web Push SDK backend via 
 ✅ You need to have Cloudflare [registration](https://dash.cloudflare.com/login)  
 ✅ You need to have OneSignal [registration](https://dash.cloudflare.com/login)
 
-Example configuration for domain **https://yourdomain.com** and proxy setup **https://onesignal.yourdomain.com** don't forget change them, to your real domain name.
+Example configuration for domain **https://yourdomain.com** and proxy setup **https://onesignal.username.workers.dev** don't forget change them, to your real domain name.
+
+
+### Setup proxy via Cloudflare dashboard
+
+#### Create worker in dashboard
+
+[Create a Worker](https://dash.cloudflare.com/?account=workers)  
+✅ Edit name:
+
+```
+onesignal-proxy
+```
+
+✅ Remove existing code from **Script** field  
+✅ Copy code from [`index.js`](https://github.com/verificatorrus/onesignal-proxy/blob/master/index.js) and paste to **Script** field  
+✅ Uncomment line 2 and edit it with the worker domain that Cloudflare provides you with
+
+```
+const MYSUBDOMAIN = 'https://onesignal-proxy.username.workers.dev'
+```
+<img src="https://raw.githubusercontent.com/verificatorrus/onesignal-proxy/master/create-worker-dashboard.png"  width="320">
+
 
 ### Edit files on your hosting
 
@@ -21,7 +43,7 @@ Example configuration for domain **https://yourdomain.com** and proxy setup **ht
 ```html
 <head>
   <script
-    src="https://onesignal.yourdomain.com/sdks/OneSignalSDK.js"
+    src="https://onesignal-proxy.username.workers.dev/sdks/OneSignalSDK.js"
     async=""
   ></script>
   <script>
@@ -42,77 +64,14 @@ Example configuration for domain **https://yourdomain.com** and proxy setup **ht
 #### Edit https://yoursite.com/OneSignalSDKWorker.js
 
 ```javascript
-importScripts('https://onesignal.yourdomain.com/sdks/OneSignalSDK.js')
+importScripts('https://onesignal-proxy.username.workers.dev/sdks/OneSignalSDK.js')
 ```
-
-#### Edit https://yoursite.com/OneSignalSDKUpdaterWorker.js
-
-```javascript
-importScripts('https://onesignal.yourdomain.com/sdks/OneSignalSDK.js')
-```
-
-### Configure Cloudflare dashboard DNS
-
-[Add new DNS A record for using with worker proxy](https://dash.cloudflare.com/?zone=dns)  
-Name:
-
-```
-onesignal
-```
-
-IP v4 address:
-
-```
-192.0.2.1
-```
-
-or any other valid IP address
-
-<img src="https://raw.githubusercontent.com/verificatorrus/onesignal-proxy/master/dash-add-subdomain.png"  width="320">
-
-
-
-### Publish via Cloudflare dashboard
-
-#### Create worker in dashboard
-
-[Create a Worker](https://dash.cloudflare.com/?account=workers)  
-✅ Edit name:
-
-```
-onesignal-proxy
-```
-
-✅ Remove existing code from **Script** field  
-✅ Copy code from [`index.js`](https://github.com/verificatorrus/onesignal-proxy/blob/master/index.js) and paste to **Script** field  
-✅ Uncomment line 2 and edit it with you domain name like:
-
-```
-const MYSUBDOMAIN = 'https://onesignal.yourdomain.com'
-```
-<img src="https://raw.githubusercontent.com/verificatorrus/onesignal-proxy/master/create-worker-dashboard.png"  width="320">
-
-
-#### Configure worker in dashboard
-
-[Add route](https://dash.cloudflare.com/?zone=workers)  
-✅ Route:
-
-```
-https://onesignal.yourdomain.com/*
-```
-
-✅ Worker: select **onesignal-proxy** from dropdown menu  
-✅ Save
-
-<img src="https://raw.githubusercontent.com/verificatorrus/onesignal-proxy/master/add-route.png"  width="320">
-
 
 🎉 DONE!
 
 https://dash.cloudflare.com/?account=workers
 
-### Publish via Cloudflare Wrangler
+### Alternative: Publish via Cloudflare Wrangler
 
 #### Install [wrangler](https://github.com/cloudflare/wrangler)
 
