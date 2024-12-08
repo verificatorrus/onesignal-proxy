@@ -1,8 +1,11 @@
 const DEBUG = false
-//const MYSUBDOMAIN = 'https://onesignal.example.com'
+// const MYSUBDOMAIN = 'https://onesignal-proxy.username.workers.dev'
 const osCdnUrl = 'https://cdn.onesignal.com'
 const osMainUrl = 'https://onesignal.com'
 const osImgUrl = 'https://img.onesignal.com'
+const cdkRealName = 'OneSignalSDK'
+const cdkFakeName = 'TwoSignalSDK'
+const regexSDKFile = new RegExp(cdkRealName + '([\\S]*)\\.js', 'g')
 const regexCdnUrl = new RegExp(osCdnUrl, 'g')
 const regexMainUrl = new RegExp(osMainUrl, 'g')
 const regexImgUrl = new RegExp(osImgUrl, 'g')
@@ -59,11 +62,12 @@ function prepFetchInit(userRequest, cfProp = {}) {
 
 async function handleEvent(event) {
   const urlFull = event.request.url
-  const urlPath = urlFull.replace(/^.*\/\/[^\/]+/, '')
+  let urlPath = urlFull.replace(/^.*\/\/[^\/]+/, '')
 
   //routes
   //https://cdn.onesignal.com/sdks/
   if (urlPath.startsWith('/sdks/')) {
+    urlPath = urlPath.replace(cdkFakeName, cdkRealName)
     if (
       event.request.method === 'GET' &&
       (urlPath.includes('js') || urlPath.includes('css')) &&
@@ -74,6 +78,10 @@ async function handleEvent(event) {
 
       bodyText = bodyText.replace(regexCdnUrl, MYSUBDOMAIN)
       bodyText = bodyText.replace(regexMainUrl, MYSUBDOMAIN)
+      bodyText = bodyText.replace(regexSDKFile, function (_match, group) {
+        group = group ?? ''
+        return cdkFakeName + group + '.js'
+      })
 
       return new Response(bodyText, resp)
     } else {
