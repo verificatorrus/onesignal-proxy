@@ -49,7 +49,7 @@ const MYSUBDOMAIN = 'https://onesignal-proxy.username.workers.dev'
 ```html
 <head>
   <script
-    src="https://onesignal-proxy.username.workers.dev/sdks/OneSignalSDK.js"
+    src="https://onesignal-proxy.username.workers.dev/sdks/TwoSignalSDK.js"
     async=""
   ></script>
   <script>
@@ -70,7 +70,7 @@ const MYSUBDOMAIN = 'https://onesignal-proxy.username.workers.dev'
 #### Edit https://yoursite.com/OneSignalSDKWorker.js
 
 ```javascript
-importScripts('https://onesignal-proxy.username.workers.dev/sdks/OneSignalSDK.js')
+importScripts('https://onesignal-proxy.username.workers.dev/sdks/TwoSignalSDK.js')
 ```
 
 🎉 DONE!
