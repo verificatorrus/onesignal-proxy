@@ -60,16 +60,16 @@ const MYSUBDOMAIN = 'https://onesignal-proxy.username.workers.dev'
         notifyButton: {
           enable: true,
         },
+        serviceWorkerPath: "TwoSignalSDKWorker.js",
       })
       OneSignal.showNativePrompt()
     })
   </script>
 </head>
 ```
+#### Rename https://yoursite.com/OneSignalSDKWorker.js to https://yoursite.com/TwoSignalSDKWorker.js
 
-#### Edit https://yoursite.com/OneSignalSDKWorker.js
-
-rename OneSignalSDKWorker.js to TwoSignalSDKWorker.js [! USE THIS INSTRUCTION](https://documentation.onesignal.com/docs/web-sdk-setup#service-workers)
+#### Edit https://yoursite.com/TwoSignalSDKWorker.js
 
 ```javascript
 importScripts('https://onesignal-proxy.username.workers.dev/sdks/TwoSignalSDK.js')
