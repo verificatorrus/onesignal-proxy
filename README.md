@@ -69,6 +69,8 @@ const MYSUBDOMAIN = 'https://onesignal-proxy.username.workers.dev'
 
 #### Edit https://yoursite.com/OneSignalSDKWorker.js
 
+rename OneSignalSDKWorker.js to TwoSignalSDKWorker.js [! USE THIS INSTRUCTION](https://documentation.onesignal.com/docs/web-sdk-setup#service-workers)
+
 ```javascript
 importScripts('https://onesignal-proxy.username.workers.dev/sdks/TwoSignalSDK.js')
 ```
