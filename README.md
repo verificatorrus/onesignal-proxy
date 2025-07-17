@@ -7,6 +7,12 @@ This worker proxy requests from WEB users to OneSignal Web Push SDK backend via 
 [`index.js`](https://github.com/verificatorrus/onesignal-proxy/blob/master/index.js) is the content of the proxy script.  
 [`wrangler.toml`](https://github.com/verificatorrus/onesignal-proxy/blob/master/wrangler.toml) is the content of the proxy configuration.
 
+## 💬 We Want Your Feedback!
+
+We're considering adding support for proxying Google Tag Manager and other analytics scripts.
+
+**Would you use this?** [Let us know in Discussions »](https://github.com/verificatorrus/onesignal-proxy/discussions)
+
 ## Requirements
 
 ✅ You need to have Cloudflare [registration](https://dash.cloudflare.com/login)  
